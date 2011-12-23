@@ -1,0 +1,20 @@
+/* line 7, deck.splitscreennotes.scss */
+.split-screen-note {
+  position: fixed;
+  height: 80%;
+  width: 80%;
+  top: 5%;
+  background: #FAF764;
+  padding: 20px !important;
+  padding-left: 35px !important;
+  left: 10%;
+  font-size: 2.5em !important;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+/* line 20, deck.splitscreennotes.scss */
+.hidden {
+  visibility: hidden;
+}

@@ -1,0 +1,9 @@
+<DOCTYPE html>
+<html>
+<body>
+</body>
+<script type="text/javascript">
+    var elem = document.getElementsByTagName('body');
+    window.setInterval("elem[0].innerHTML='<h1>' + localStorage.getItem('slide_text') + '</h1>'", 200);
+</script>
+</html>
