@@ -11,15 +11,19 @@ $(document).bind('deck.init', function() {
         }
 
         var baseUrl = hrefArr.join('/');
-        var presenter = window.open(baseUrl + 'splitscreennote/deck.splitscreennote.html', 'My Window', 'width=' + screen.width + ', height=' + screen.height);
+        var presenter = window.open(baseUrl + 'extensions/presenterview/deck.presenterview.html', 'My Window', 'width=' + screen.width + ', height=' + screen.height);
     }
 });
 
 $(document).bind('deck.change', function(event, from, to) {
-    console.log('hash: ' + location.hash);
-    curElem = document.getElementById(location.hash.substring(1)).innerHTML;
+    curElem        = document.getElementById(location.hash.substring(1)).innerHTML;
     startOfComment = curElem.indexOf('<!--');
     endOfComment   = curElem.indexOf('-->');
-    comment = curElem.substring(startOfComment + 4,endOfComment);
+    if (startOfComment !== -1 && endOfComment !== -1) {
+        comment = curElem.substring(startOfComment + 4, endOfComment);
+    } else {
+        comment = 'No comment for this slide';
+    }
+    
     localStorage.setItem('slide_text', comment);
 });
