@@ -30,11 +30,14 @@
     stylesheets = JSON.parse(stylesheetsJson);
     
     for(i = 0; i <= stylesheets.length-1; i++) {
-    	styleBlock += '<link rel="stylesheet" href="'+stylesheets[i]+'">'
-    }
-    console.log(styleBlock);
-    head = document.getElementsByTagName("head");
-    document.write(head[0].replace("<!--placeholder-->",styleBlock));
+    	
+    	var linkElement = document.createElement("link");
+
+   	    linkElement.setAttribute("rel", "stylsheet");
+   	    linkElement.setAttribute("href", stylesheets[i]);
+
+   	    document.head.appendChild(linkElement);
+    }   
  
     function update() {
     	var note = document.getElementById('note');
