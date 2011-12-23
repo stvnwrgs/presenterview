@@ -1,6 +1,5 @@
 $(document).bind('deck.init', function() {
     var href = window.location.href;
-
     var hrefArr = href.split('/');
     var hrefArrLength = hrefArr.length;
     
@@ -10,8 +9,16 @@ $(document).bind('deck.init', function() {
     }
 
     var baseUrl = hrefArr.join('/');
-
     var presenter = window.open(baseUrl + 'extensions/presenterview/deck.presenterview.html', 'My Window', 'width=' + screen.width + ', height=' + screen.height);
+    
+    // write css links to localstorage
+    if (document.styleSheets) {
+        var styleArr = [];
+        for (var i = 0; i < document.styleSheets.length; i++) {
+            styleArr.push(document.styleSheets[i].href);
+        }
+        localStorage.setItem('stylesheets', JSON.stringify(styleArr));
+    }
 });
 
 $(document).bind('deck.change', function(event, from, to) {
