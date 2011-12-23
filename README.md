@@ -1,19 +1,19 @@
-#deck.js extension splitscreennote
+#deck.js extension presenterview
 
-Its an extension for deck.js html5 presentation. You can use it if you want to have notes for slides that only the presentator can see. You just need 2. 
+Its an extension for deck.js html5 presentation. You can use it if you want to have notes for slides that only the presentator can see.
 
-## Dependencies (included in this repository)
+## Dependencies (not included in this repository)
 
 - [deck.js](https://github.com/imakewebthings/deck.js)
 
 ## Instruction
 
-1. You just need to create a div at the end of your slide. Like in the splitscreennote.html 
-2. Add Css and JS to your presentation
-3. Open 2 browser windows with your presentation
-3. run the applyNotes(intervalDuration, startSlide) in the console of the browser window you want to see the nots. I suggest the following: applyNotes(2000,0)
+1. Copy the presenterview extension to your deck.js extensions directory
+2. Include the extensions javascript at the bottom of your presentations index.html via script-tags & src="../extensions/presenterview/deck.presenterview.js"
+3. Add notes as HTML commentaries to the sections of your presentation (<!-- commentary -->) - you may use HTML-Markup inside the commentaries if you like to
+4. Open up your presentation - if the popup gets blocked, allow it and reload
 
-If you would like to contribute a patch to deck.js please do as much as you can of the following:
+The presenterview should've been opened and if the current slide has a comment, you can read your note there.
 
 ## License
 
