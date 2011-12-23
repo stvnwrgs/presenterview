@@ -14,7 +14,7 @@ $(document).bind('deck.init', function() {
     // write css links to localstorage
     if (document.styleSheets) {
         var styleArr = [];
-        for (var i = 0; i < document.styleSheets.length; i++) {
+        for (var i = 0; i < document.styleSheets.length - 1; i++) {
             styleArr.push(document.styleSheets[i].href);
         }
         localStorage.setItem('stylesheets', JSON.stringify(styleArr));
@@ -22,16 +22,23 @@ $(document).bind('deck.init', function() {
 });
 
 $(document).bind('deck.change', function(event, from, to) {
-    curElem        = document.getElementById(location.hash.substring(1));
-    curElemHtml    = curElem.innerHTML;
-    startOfComment = curElemHtml.indexOf('<!--');
-    endOfComment   = curElemHtml.indexOf('-->');
-    
-    if (startOfComment !== -1 && endOfComment !== -1) {
-        comment = curElemHtml.substring(startOfComment + 4, endOfComment);
-    } else {
-        comment = '';
+    if (document.getElementById(location.hash.substring(1)).nodeName === 'SECTION') {
+        curElem        = document.getElementById(location.hash.substring(1));
+        curElemHtml    = curElem.innerHTML;
+        startOfComment = curElemHtml.indexOf('<!--');
+        endOfComment   = curElemHtml.indexOf('-->');
+        
+        if (startOfComment !== -1 && endOfComment !== -1) {
+            comment = curElemHtml.substring(startOfComment + 4, endOfComment);
+        } else {
+            comment = '';
+        }
+        
+        localStorage.setItem('notes', comment);
+        if (curElem.nextElementSibling.nodeName === 'SECTION') {
+            localStorage.setItem('next_slide', curElem.nextElementSibling.innerHTML);
+        } else {
+            localStorage.setItem('next_slide', '');
+        }
     }
-    
-    localStorage.setItem('slide_text', comment);
 });
