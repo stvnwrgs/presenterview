@@ -1,20 +1,17 @@
-/* line 7, deck.splitscreennotes.scss */
-.split-screen-note {
-  position: fixed;
-  height: 80%;
-  width: 80%;
-  top: 5%;
-  background: #FAF764;
-  padding: 20px !important;
-  padding-left: 35px !important;
-  left: 10%;
-  font-size: 2.5em !important;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+/* line 7, deck.presenterview.scss */
+.wrapper {
+  height: 100%;
+  width: 100%;
 }
 
-/* line 20, deck.splitscreennotes.scss */
-.hidden {
-  visibility: hidden;
+/* line 12, deck.presenterview.scss */
+#note {
+  height: 100%;
+  width: 50%;
+}
+
+/* line 17, deck.presenterview.scss */
+#next-slide {
+  height: 100%;
+  width: 50%;
 }

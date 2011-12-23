@@ -1,9 +1,36 @@
-<DOCTYPE html>
+
 <html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Presenter View</title>
+	
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="deck.presenterview.css">
+</head>
 <body>
+	<div class="wrapper">
+		<section id="note">
+		asd	
+		</section>
+		<section  id="next-slide">
+		next slide
+		</section>
+	</div>
 </body>
 <script type="text/javascript">
-    var elem = document.getElementsByTagName('body');
-    window.setInterval("elem[0].innerHTML='<h1>' + localStorage.getItem('slide_text') + '</h1>'", 200);
+    
+    var interval = window.setInterval("update()", 200);
+    
+    function update() {
+    	var note = document.getElementById('note');
+    	note.innerHTML= localStorage.getItem('note');
+    	var nextSlide = document.getElementById('next-slide');
+    	nextSlide.innerHTML = localStorage.getItem('next-slide');
+    }
+    
 </script>
 </html>
