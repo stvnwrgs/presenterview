@@ -7,16 +7,16 @@
 	<title>Presenter View</title>
 	
 	<meta name="viewport" content="width=1024, user-scalable=no">
-	
+	<!--placeholder--> 
 	<!-- Core and extension CSS files -->
 	<link rel="stylesheet" href="deck.presenterview.css">
 </head>
 <body>
 	<div class="wrapper">
-		<section id="note">
+		<section class="sector" id="note">
 		asd	
 		</section>
-		<section  id="next-slide">
+		<section  class="sector" id="next-slide">
 		next slide
 		</section>
 	</div>
@@ -24,13 +24,25 @@
 <script type="text/javascript">
     
     var interval = window.setInterval("update()", 200);
+    var stylesheetsJson = localStorage.getItem('stylesheets');
+    var styleBlock ="";
     
+    stylesheets = JSON.parse(stylesheetsJson);
+    
+    for(i = 0; i <= stylesheets.length-1; i++) {
+    	styleBlock += '<link rel="stylesheet" href="'+stylesheets[i]+'">'
+    }
+    console.log(styleBlock);
+    head = document.getElementsByTagName("head");
+    document.write(head[0].replace("<!--placeholder-->",styleBlock));
+ 
     function update() {
     	var note = document.getElementById('note');
-    	note.innerHTML= localStorage.getItem('note');
+    	note.innerHTML= localStorage.getItem('notes');
     	var nextSlide = document.getElementById('next-slide');
-    	nextSlide.innerHTML = localStorage.getItem('next-slide');
+    	nextSlide.innerHTML = localStorage.getItem('next_slide');
     }
     
+   
 </script>
 </html>
