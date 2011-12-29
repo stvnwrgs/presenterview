@@ -1,11 +1,22 @@
+/**
+ * When the presentation loads, the path to all included stylesheets is written to the localStorage, so we can
+ * show a smaller version of the slide in the presenterView. After that the presenterView launchs as a popup.
+ */
 $(document).bind('deck.init', function() {
-    // write css links to localstorage
+    // write css links to localStorage
     presenterView.writeAllCssPathsToLocalStorage();
     
     // open popup
-    var presenter = window.open(presenterView.getLinkToPresenterView(), 'My Window', 'width=' + screen.width + ', height=' + screen.height);
+    var presenter = window.open(presenterView.getLinkToPresenterView(), 'deck.js - presenterView', 'width=' + screen.width + ', height=' + screen.height);
 });
 
+/**
+ * Note: This event is also triggered when the presentation is loaded!
+ * When the current slide changes, the current item is determined in order to grab its content and extract
+ * the html commentaries. If this slide is a section (what means it's a new slide, not just a nested element), 
+ * we grab the html commentaries and the content and store it in the localSession which gets read by the 
+ * presenterView.
+ */
 $(document).bind('deck.change', function(event, from, to) {
     presenterView.setCurrentItem(document.getElementById(location.hash.substring(1)));
     
@@ -19,12 +30,20 @@ $(document).bind('deck.change', function(event, from, to) {
     }
 });
 
-
+/**
+ * presenterView object, does all the work. 
+ * Methods are called by the events above.
+ */
 var presenterView = (function() {
+    // private
     var currentItem = null;
     var currentItemsContent = null;
     var writeToLocalStorage = [];
-
+    
+    /**
+     * Creates the link to the presenterView, based on the current location (this is needed because nobody
+     * knows how the very much appreciated user names his presentation).
+     */
     var createLinkToPresenterView = function() {
         var hrefArr        = window.location.href.split('/');
         var lastElemsIndex = hrefArr.length - 1;
@@ -42,6 +61,9 @@ var presenterView = (function() {
         writeToLocalStorage[identifier] = item;
     }
     
+    /**
+     * Extracts the html commentary from the current items content.
+     */
     var getNotes= function() {
         startOfComment = currentItemsContent.indexOf('<!--');
         endOfComment   = currentItemsContent.indexOf('-->');
@@ -53,6 +75,10 @@ var presenterView = (function() {
         return '';
     }
     
+    /**
+     * Checks if there's a next slide (another section in the markup below the current) and returns
+     * the content if so.
+     */
     var getNextSlide = function() {
         if (currentItem.nextElementSibling.nodeName === 'SECTION') {
             return currentItem.nextElementSibling.innerHTML;
@@ -61,7 +87,11 @@ var presenterView = (function() {
         }
     }
 
+    // public
     return {
+        /**
+         * Loops trough all stylesheets that are included in the presentation and writes them to the localStorage.
+         */
         writeAllCssPathsToLocalStorage: function() {
             if (document.styleSheets.length > 0) {
                 var styleArr = [];
@@ -78,23 +108,39 @@ var presenterView = (function() {
             return createLinkToPresenterView();
         },
         
+        /**
+         * Check if the current item is a slide or just a nested element in a slide.
+         */
         currentItemIsFromTypeSection: function() {
             return currentItem.nodeName === 'SECTION';
         },
         
+        /**
+         * Write the current Item (DomNode) to the objects store to do some stuff with it.
+         */
         setCurrentItem: function(DomNode) {
             currentItem = DomNode;
             currentItemsContent = DomNode.innerHTML;
         },
         
+        /**
+         * Called to get and store the html commentary of the current slide.
+         */
         storeNotes: function() {
             addItemToLocalStorageArray('notes', getNotes());
         },
         
+        /**
+         * Called to get and store the html markup of the next slide.
+         */
         storeNextSlide: function() {
             addItemToLocalStorageArray('next_slide', getNextSlide());
         },
         
+        /**
+         * Writes the items that are stored in writeToLocalStorage[] to the localStorage - should be called after 
+         * writeToLocalStorage[] has been filled with values. :)
+         */
         write: function() {
             if (writeToLocalStorage.notes !== 'undefined') {
                 localStorage.setItem('notes', writeToLocalStorage['notes']);
@@ -106,12 +152,3 @@ var presenterView = (function() {
         }
     }
 })();
-
-
-
-
-
-
-
-
-
