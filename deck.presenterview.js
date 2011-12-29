@@ -6,8 +6,10 @@ $(document).bind('deck.init', function() {
     // write css links to localStorage
     presenterView.writeAllCssPathsToLocalStorage();
     
-    // open popup
-    var presenter = window.open(presenterView.getLinkToPresenterView(), 'deck.js - presenterView', 'width=' + screen.width + ', height=' + screen.height);
+    // open popup, 3 args: link to open, windows name, width + height
+    var presenter = window.open(presenterView.getLinkToPresenterView(), 
+                                'deck.js - presenterView', 
+                                'width=' + screen.width + ', height=' + screen.height);
 });
 
 /**
@@ -31,8 +33,7 @@ $(document).bind('deck.change', function(event, from, to) {
 });
 
 /**
- * presenterView object, does all the work. 
- * Methods are called by the events above.
+ * presenterView object, does all the work. Methods are called by the events above.
  */
 var presenterView = (function() {
     // private
@@ -65,8 +66,8 @@ var presenterView = (function() {
      * Extracts the html commentary from the current items content.
      */
     var getNotes= function() {
-        startOfComment = currentItemsContent.indexOf('<!--');
-        endOfComment   = currentItemsContent.indexOf('-->');
+        var startOfComment = currentItemsContent.indexOf('<!--');
+        var endOfComment   = currentItemsContent.indexOf('-->');
 
         if (startOfComment !== -1 && endOfComment !== -1) {
             return currentItemsContent.substring(startOfComment + 4, endOfComment);
