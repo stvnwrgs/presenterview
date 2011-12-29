@@ -1,17 +1,16 @@
-/* line 7, deck.presenterview.scss */
 .wrapper {
   height: 100%;
   width: 100%;
 }
 
-/* line 12, deck.presenterview.scss */
 #note {
   height: 100%;
   width: 50%;
+  float: left;
 }
 
-/* line 17, deck.presenterview.scss */
 #next-slide {
   height: 100%;
   width: 50%;
+  float: left;
 }
