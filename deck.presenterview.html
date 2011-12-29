@@ -1,51 +1,45 @@
-
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
-	<title>Presenter View</title>
-	
-	<meta name="viewport" content="width=1024, user-scalable=no">
-	<!--placeholder--> 
-	<!-- Core and extension CSS files -->
-	<link rel="stylesheet" href="deck.presenterview.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Presenter View</title>
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    <!-- presenterview styling -->
+    <link rel="stylesheet" href="deck.presenterview.css">
+    <!-- preview styling, added via js on run -->
 </head>
 <body>
-	<div class="wrapper">
-		<section class="sector" id="note">
-		asd	
-		</section>
-		<section  class="sector" id="next-slide">
-		next slide
-		</section>
-	</div>
+    <div class="wrapper">
+        <section class="sector" id="note">
+ 
+        </section>
+        <section  class="sector" id="next-slide">
+
+        </section>
+    </div>
 </body>
 <script type="text/javascript">
+    // set interval to read localStorage
+    window.setInterval("update()", 200);
     
-    var interval = window.setInterval("update()", 200);
-    var stylesheetsJson = localStorage.getItem('stylesheets');
-    var styleBlock ="";
-    
-    stylesheets = JSON.parse(stylesheetsJson);
-    
-    for(i = 0; i <= stylesheets.length-1; i++) {
-    	
-    	var linkElement = document.createElement("link");
+    // retrieve links to the stylesheets
+    var stylesheets = JSON.parse(localStorage.getItem('stylesheets'));
 
-   	    linkElement.setAttribute("rel", "stylsheet");
-   	    linkElement.setAttribute("href", stylesheets[i]);
+    for (var i = 0; i <= stylesheets.length - 1; i++) {
+        var linkElement = document.createElement('link');
 
-   	    document.head.appendChild(linkElement);
-    }   
+        linkElement.setAttribute('rel', 'stylsheet');
+        linkElement.setAttribute('href', stylesheets[i]);
+
+        document.head.appendChild(linkElement);
+    }
  
     function update() {
-    	var note = document.getElementById('note');
-    	note.innerHTML= localStorage.getItem('notes');
-    	var nextSlide = document.getElementById('next-slide');
-    	nextSlide.innerHTML = localStorage.getItem('next_slide');
+        var note            = document.getElementById('note');
+        note.innerHTML      = localStorage.getItem('notes');
+        
+        var nextSlide       = document.getElementById('next-slide');
+        nextSlide.innerHTML = localStorage.getItem('next_slide');
     }
-    
-   
 </script>
 </html>
