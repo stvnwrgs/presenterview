@@ -4,18 +4,20 @@
 	border-radius:$r;
 }
 
+body {
+	background:#EEE;
+}
+
 .wrapper {
 	height:100%;
 	width:100%;
 }
 
-#note {
+.sector {
 	height:100%;
 	width:50%;
+	float:left;
 }
 
-#next-slide {
-	height:100%;
-	width:50%;
-}
+
 
