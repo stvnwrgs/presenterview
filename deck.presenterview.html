@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <section class="sector" id="note">
+        <section class="sector " id="note">
  
         </section>
         <section  class="sector" id="next-slide">
@@ -18,28 +18,5 @@
         </section>
     </div>
 </body>
-<script type="text/javascript">
-    // set interval to read localStorage
-    window.setInterval("update()", 200);
-    
-    // retrieve links to the stylesheets
-    var stylesheets = JSON.parse(localStorage.getItem('stylesheets'));
-
-    for (var i = 0; i <= stylesheets.length - 1; i++) {
-        var linkElement = document.createElement('link');
-
-        linkElement.setAttribute('rel', 'stylsheet');
-        linkElement.setAttribute('href', stylesheets[i]);
-
-        document.head.appendChild(linkElement);
-    }
- 
-    function update() {
-        var note            = document.getElementById('note');
-        note.innerHTML      = localStorage.getItem('notes');
-        
-        var nextSlide       = document.getElementById('next-slide');
-        nextSlide.innerHTML = localStorage.getItem('next_slide');
-    }
-</script>
+<script type="text/javascript" src="presenterwindow.js"></script>
 </html>
