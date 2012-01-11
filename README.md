@@ -18,6 +18,6 @@ in the presenter view and the next slide is also included.
 
 ## License
 
-Copyright (c) 2011 Steven Wirges & Marc Dixx
+Copyright (c) 2011 [Steven Wirges](https://github.com/stvnwrgs) & [Marc Dix](https://github.com/mdix)
 
 Dual licensed under the [MIT license](https://github.com/imakewebthings/deck.js/blob/master/MIT-license.txt) and [GPL license](https://github.com/imakewebthings/deck.js/blob/master/GPL-license.txt).
