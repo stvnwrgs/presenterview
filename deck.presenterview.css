@@ -1,16 +1,15 @@
-/* line 7, deck.presenterview.scss */
-body {
-  background: #EEE;
-}
-
-/* line 11, deck.presenterview.scss */
 .wrapper {
   height: 100%;
   width: 100%;
 }
 
-/* line 16, deck.presenterview.scss */
-.sector {
+#note {
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+
+#next-slide {
   height: 100%;
   width: 50%;
   float: left;

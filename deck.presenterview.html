@@ -1,54 +1,45 @@
-
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
-	<title>Presenter View</title>
-	
-	<meta name="viewport" content="width=1024, user-scalable=no">
-	<!--placeholder--> 
-	<!-- Core and extension CSS files -->
-	<link rel="stylesheet" href="deck.presenterview.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Presenter View</title>
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    <!-- presenterview styling -->
+    <link rel="stylesheet" href="deck.presenterview.css">
+    <!-- preview styling, added via js on run -->
 </head>
 <body>
-<iframe src="http://root.dev/extendeddeckjs/introduction/#no-presenterview" id="nextIfr" style="border:0px #FFFFFF none;" height="480" width="640"></iframe>
+    <div class="wrapper">
+        <section class="sector" id="note">
+ 
+        </section>
+        <section  class="sector" id="next-slide">
 
-	<div class="wrapper">
-		<section class="sector" id="note">
-		asd	
-		</section>
-		<section  class="sector"  >
-			
-		</section>
-	</div>
+        </section>
+    </div>
 </body>
-<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-<script>window.jQuery || document.write('<script src="../jquery-1.7.min.js"><\/script>')</script>
 <script type="text/javascript">
+    // set interval to read localStorage
+    window.setInterval("update()", 200);
     
-	alert("asdassd");
-    
-	var interval = window.setInterval("update()", 200);
-	var baseUrl = localStorage.getItem('presentation_url');
-	var slideHash = "#no-presenterview";
-	var note = document.getElementById('note'); 
-	
-	$('#nextIfr').attr("src", baseUrl + slideHash );
-	
-    function update() {   	
-    	note.innerHTML= localStorage.getItem('notes');   
-    	
-    	if (slideHash != "#" + localStorage.getItem("next_slide_hash")) {
-    		slideHash = "#" + localStorage.getItem("next_slide_hash");
-    		$('#nextIfr').attr("src", baseUrl + slideHash );
-    		
-    	}
-    	
-    	
+    // retrieve links to the stylesheets
+    var stylesheets = JSON.parse(localStorage.getItem('stylesheets'));
+
+    for (var i = 0; i <= stylesheets.length - 1; i++) {
+        var linkElement = document.createElement('link');
+
+        linkElement.setAttribute('rel', 'stylsheet');
+        linkElement.setAttribute('href', stylesheets[i]);
+
+        document.head.appendChild(linkElement);
     }
-    
-   
-	
+ 
+    function update() {
+        var note            = document.getElementById('note');
+        note.innerHTML      = localStorage.getItem('notes');
+        
+        var nextSlide       = document.getElementById('next-slide');
+        nextSlide.innerHTML = localStorage.getItem('next_slide');
+    }
 </script>
 </html>
