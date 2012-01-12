@@ -36,6 +36,7 @@ $(document).bind('deck.change', function(event, from, to) {
  * presenterView object, does all the work. Methods are called by the events above.
  */
 var presenterView = (function() {
+    "use strict";
     // private
     var currentItem = null;
     var currentItemsContent = null;
@@ -56,11 +57,11 @@ var presenterView = (function() {
         var urlToPresenterView = baseUrl + 'extensions/presenterview/deck.presenterview.html';
         
         return urlToPresenterView;
-    }
+    };
     
     var addItemToLocalStorageArray = function(identifier, item) {
         writeToLocalStorage[identifier] = item;
-    }
+    };
     
     /**
      * Extracts the html commentary from the current items content.
@@ -74,7 +75,7 @@ var presenterView = (function() {
         }
         
         return '';
-    }
+    };
     
     /**
      * Checks if there's a next slide (another section in the markup below the current) and returns
@@ -86,7 +87,7 @@ var presenterView = (function() {
         } else {
             return '';
         }
-    }
+    };
 
     // public
     return {
