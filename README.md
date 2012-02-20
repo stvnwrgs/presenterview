@@ -10,12 +10,12 @@ in the presenter view and the next slide is also included.
 ## Instruction
 
 1. Copy the presenterview extension to your deck.js extensions directory
-2a. Include the extensions javascript at the bottom of your presentations index.html: `<script type="text/javascript" src="../extensions/presenterview/deck.presenterview.js"></script>`
-2b. Also include the hash extension at the bottom of your presentations index.html: `<script type="text/javascript" src="../extensions/hash/deck.hash.js"></script>`
-3. Add notes as HTML commentaries to the sections of your presentation (<!-- commentary -->) - you may use HTML-Markup inside the commentaries if you like to
-4. (Optional) Style your presentation view
-5. Open up your presentation - if the popup gets blocked, allow it and reload
-6. Click on you Presentation Window again and do your stuff.
+2. Include the extensions javascript at the bottom of your presentations index.html: `<script type="text/javascript" src="../extensions/presenterview/deck.presenterview.js"></script>`
+3. Also include the hash extension at the bottom of your presentations index.html: `<script type="text/javascript" src="../extensions/hash/deck.hash.js"></script>`
+4. Add notes as HTML commentaries to the sections of your presentation (<!-- commentary -->) - you may use HTML-Markup inside the commentaries if you like to
+5. (Optional) Style your presentation view
+6. Open up your presentation - if the popup gets blocked, allow it and reload
+7. Click on you Presentation Window again and do your stuff.
 
 ## License
 
