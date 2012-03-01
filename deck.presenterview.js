@@ -1,37 +1,39 @@
-/**
- * When the presentation loads, the path to all included stylesheets is written to the localStorage, so we can
- * show a smaller version of the slide in the presenterView. After that the presenterView launchs as a popup.
- */
-$(document).bind('deck.init', function() {
-    // write css links to localStorage
-    presenterView.writeAllCssPathsToLocalStorage();
-    
-    // open popup, 3 args: link to open, windows name, width + height
-    var presenter = window.open(presenterView.getLinkToPresenterView(), 
-                                'deck.js - presenterView', 
-                                'width=' + screen.width + ', height=' + screen.height);
-});
+if (window.$ !== undefined) {
+    /**
+    * When the presentation loads, the path to all included stylesheets is written to the localStorage, so we can
+    * show a smaller version of the slide in the presenterView. After that the presenterView launchs as a popup.
+    */
+    $(document).bind('deck.init', function() {
+        // write css links to localStorage
+        presenterView.writeAllCssPathsToLocalStorage();
 
-/**
- * Note: This event is also triggered when the presentation is loaded!
- * When the current slide changes, the current item is determined in order to grab its content and extract
- * the html commentaries. If this slide is a section (what means it's a new slide, not just a nested element), 
- * we grab the html commentaries and the content and store it in the localSession which gets read by the 
- * presenterView.
- */
-$(document).bind('deck.change', function(event, from, to) {
-    presenterView.setCurrentItem(document.getElementById(location.hash.substring(1)));
-    
-    if (presenterView.currentItemIsFromTypeSection()) {
-        // prepare
-        presenterView.storeNotes();
-        presenterView.storeNextSlide();
-        
-        // write prepared content to localStorage
-        presenterView.write();
-    }
-});
+        // open popup, 3 args: link to open, windows name, width + height
+        var presenter = window.open(presenterView.getLinkToPresenterView(), 
+                                    'deck.js - presenterView', 
+                                    'width=' + screen.width + ', height=' + screen.height);
+    });
 
+    /**
+    * Note: This event is also triggered when the presentation is loaded!
+    * When the current slide changes, the current item is determined in order to grab its content and extract
+    * the html commentaries. If this slide is a section (what means it's a new slide, not just a nested element), 
+    * we grab the html commentaries and the content and store it in the localSession which gets read by the 
+    * presenterView.
+    */
+    $(document).bind('deck.change', function(event, from, to) {
+        presenterView.setCurrentItem(document.getElementById(location.hash.substring(1)));
+
+        if (presenterView.currentItemIsFromTypeSection()) {
+            // prepare
+            presenterView.storeNotes();
+            presenterView.storeNextSlide();
+
+            // write prepared content to localStorage
+            presenterView.write();
+        }
+    });
+}
+    
 /**
  * presenterView object, does all the work. Methods are called by the events above.
  */
@@ -66,7 +68,7 @@ var presenterView = (function() {
     /**
      * Extracts the html commentary from the current items content.
      */
-    var getNotes= function() {
+    var getNotes = function() {
         var startOfComment = currentItemsContent.indexOf('<!--');
         var endOfComment   = currentItemsContent.indexOf('-->');
 
