@@ -10,13 +10,13 @@
 </head>
 <body class="deck-container" style="zoom: 0.5; width: 600px;">
     <section class="slide" id="nextSlide">
-    
+
     </section>
 </body>
 <script type="text/javascript">
     // UNBELIEVABLE IMPERFORMANT, NEEDS TO BE REPLACED WITH... IDKY
     window.setInterval("update()", 2000);
-    
+
     // retrieve links to the stylesheets
     var stylesheets = JSON.parse(localStorage.getItem('stylesheets'));
 
@@ -28,12 +28,12 @@
 
         document.head.appendChild(linkElement);
     }
- 
+
     var nextSlideDisplay = document.getElementById('nextSlide');
     function update() {
         nextSlideDisplay.innerHTML = localStorage.getItem('next_slide');
     }
-    
+
     update();
 </script>
 </html>

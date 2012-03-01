@@ -3,14 +3,20 @@
   width: 100%;
 }
 
-#note {
+.wrapper section {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+#note, #next-slide  {
   height: 100%;
-  width: 50%;
   float: left;
 }
 
+#note {
+    width: 40%;
+}
+
 #next-slide {
-  height: 100%;
-  width: 50%;
-  float: left;
+    width: 60%;
 }

@@ -15,12 +15,9 @@ for (var i = 0; i <= stylesheets.length - 1; i++) {
 }
 
 /**
- * updates the notes and next slide section
+ * updates the notes
  */
 function update() {
     var note            = document.getElementById('note');
     note.innerHTML      = localStorage.getItem('notes');
-    
-    var nextSlide       = document.getElementById('next-slide');
-    nextSlide.innerHTML = localStorage.getItem('next_slide');
 }
